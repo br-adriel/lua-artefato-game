@@ -1,3 +1,6 @@
+local love = require("love")
+local homeScreen = require("screens.home")
+
 function love.draw()
-  love.graphics.print("Olá mundo!", 400, 300)
+  homeScreen:draw()
 end
