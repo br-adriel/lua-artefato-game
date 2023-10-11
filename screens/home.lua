@@ -32,13 +32,19 @@ local function homeScreen()
       )
 
       local buttons_total_width = 0
-      local i = 1;
-      for _, button in pairs(buttons.home) do
+      local keys = {}
+      for key, _ in pairs(buttons.home) do
+        table.insert(keys, 1, key)
+      end
+      table.sort(keys, function(a, b) return a:upper() < b:upper() end)
+
+      for i = 1, #keys do
+        local button = buttons.home[keys[i]]
         button.x = window_width - button.width - 10 * i - buttons_total_width
         button.y = window_height - button.height - 10
         button:draw()
+
         buttons_total_width = buttons_total_width + button.width
-        i = i + 1
       end
     end
   }
