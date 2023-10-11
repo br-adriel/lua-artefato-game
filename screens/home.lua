@@ -32,11 +32,13 @@ local function homeScreen()
       )
 
       local buttons_total_width = 0
-      for i = 1, #buttons.home do
-        buttons.home[i].x = window_width - buttons.home[i].width - 10 * i - buttons_total_width
-        buttons.home[i].y = window_height - buttons.home[i].height - 10
-        buttons.home[i]:draw()
-        buttons_total_width = buttons_total_width + buttons.home[i].width
+      local i = 1;
+      for _, button in pairs(buttons.home) do
+        button.x = window_width - button.width - 10 * i - buttons_total_width
+        button.y = window_height - button.height - 10
+        button:draw()
+        buttons_total_width = buttons_total_width + button.width
+        i = i + 1
       end
     end
   }

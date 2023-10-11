@@ -5,13 +5,13 @@ local love = require("love")
 
 return {
   home = {
-    menuButton("Sair", love.event.quit),
-    menuButton("Configurações", function()
+    exit = menuButton("Sair", love.event.quit),
+    settings = menuButton("Configurações", function()
       _G.previous_screen = "home"
       _G.current_screen = "settings"
     end)
   },
   settings = {
-    backButton("Voltar", 50, 50),
+    back = backButton("Voltar", 50, 50),
   }
 }
