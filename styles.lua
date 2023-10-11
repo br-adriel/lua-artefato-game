@@ -18,14 +18,14 @@ return {
           bg = { 1, 1, 1 },
           text_color = { 0, 0, 0 },
           mode = "fill",
-          padding = { 16, 12 },
+          padding = { 12, 12 },
         },
       }
     },
     setting = {
       font = fonts.commonText.large,
-      padding = { 20, 50 },
-      gap = 20,
+      padding = { 10, 10 },
+      gap = 16,
       text_color = { 1, 1, 1 }
     }
   }
