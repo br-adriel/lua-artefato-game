@@ -13,13 +13,14 @@ local function settingLine(settingName, x, y, value, leftButton, rightButton)
 
     draw = function(self)
       local window_width = love.graphics.getWidth()
+      local text_y = y + style.padding[2] + (rightBtn:height() - style.font:getHeight()) / 2
 
       love.graphics.setColor(1, 1, 1)
       love.graphics.setFont(style.font)
       love.graphics.print(
         name,
         x + style.padding[1],
-        y + style.padding[2]
+        text_y
       )
 
       rightBtn.x = window_width - style.padding[1] - rightBtn:width()
@@ -30,11 +31,12 @@ local function settingLine(settingName, x, y, value, leftButton, rightButton)
       leftBtn.y = y + style.padding[2]
       leftBtn:draw()
 
+      love.graphics.setColor(1, 1, 1)
       love.graphics.setFont(style.font)
       love.graphics.print(
         self.value,
         leftBtn.x + leftBtn:width() + style.gap,
-        y + style.padding[2]
+        text_y
       )
     end,
   }
