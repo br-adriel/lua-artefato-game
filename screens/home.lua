@@ -1,18 +1,6 @@
 local love = require("love")
 local fonts = require("fonts")
-local menuButton = require("components.menu_button")
-
-local exitButton = menuButton("Sair", love.event.quit)
-
-function love.update(dt)
-  exitButton:update(love.mouse.getPosition())
-end
-
-function love.mousepressed(x, y, button, isTouch, presses)
-  if button == 1 then
-    exitButton:checkClick(x, y)
-  end
-end
+local buttons = require("buttons")
 
 local function homeScreen()
   local text_distance = 10
@@ -43,9 +31,13 @@ local function homeScreen()
         text_start_height + text_distance + fonts.display.large:getHeight()
       )
 
-      exitButton.x = window_width - exitButton.width - 10
-      exitButton.y = window_height - exitButton.height - 10
-      exitButton:draw()
+      local buttons_total_width = 0
+      for i = 1, #buttons.home do
+        buttons.home[i].x = window_width - buttons.home[i].width - 10 * i - buttons_total_width
+        buttons.home[i].y = window_height - buttons.home[i].height - 10
+        buttons.home[i]:draw()
+        buttons_total_width = buttons_total_width + buttons.home[i].width
+      end
     end
   }
 end
