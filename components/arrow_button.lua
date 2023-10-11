@@ -14,14 +14,16 @@ local function arrowButton(
     x = x or 0,
     y = y or 0,
     shapeSize = shapeSize or 32,
+    onClick = onClick,
+    onClickParam = onClickParam,
 
     checkClick = function(self, mouse_x, mouse_y)
       if self:isHorvering(mouse_x, mouse_y) then
-        if onClick then
-          if onClickParam then
-            onClick(onClickParam)
+        if self.onClick then
+          if self.onClickParam then
+            self.onClick(self.onClickParam)
           else
-            onClick()
+            self.onClick()
           end
         end
       end
