@@ -21,6 +21,12 @@ return {
           padding = { 16, 12 },
         },
       }
+    },
+    setting = {
+      font = fonts.commonText.large,
+      padding = { 20, 50 },
+      gap = 20,
+      text_color = { 1, 1, 1 }
     }
   }
 }
