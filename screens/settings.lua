@@ -11,19 +11,20 @@ local function settingsScreen()
     draw = function(self)
       local windowWidth = love.graphics.getWidth()
       local windowHeight = love.graphics.getHeight()
+      local heightUnit = windowHeight / 500
 
       love.graphics.setColor(1, 1, 1)
       love.graphics.setFont(fonts.display.normal)
       love.graphics.print(
         screenTitle,
         windowWidth / 2 - fonts.display.normal:getWidth(screenTitle) / 2,
-        50
+        30 * heightUnit
       )
 
       settingLine(
         "Escala",
         0,
-        fonts.display.normal:getHeight() + 50 * 2,
+        fonts.display.normal:getHeight() + 30 * heightUnit * 2,
         "1.0",
         buttons.decreaseScale,
         buttons.increaseScale
