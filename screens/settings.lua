@@ -1,22 +1,22 @@
 local love = require("love")
 local fonts = require("fonts")
 local buttons = require("buttons").settings
-local settingLine = require("components.setting_line")
+local settingLine = require("components.settingLine")
 local padding = require("styles").menu.setting.padding
 
 local function settingsScreen()
-  local screen_title = "confiGuRAções"
+  local screenTitle = "confiGuRAções"
 
   return {
     draw = function(self)
-      local window_width = love.graphics.getWidth()
-      local window_height = love.graphics.getHeight()
+      local windowWidth = love.graphics.getWidth()
+      local windowHeight = love.graphics.getHeight()
 
       love.graphics.setColor(1, 1, 1)
       love.graphics.setFont(fonts.display.normal)
       love.graphics.print(
-        screen_title,
-        window_width / 2 - fonts.display.normal:getWidth(screen_title) / 2,
+        screenTitle,
+        windowWidth / 2 - fonts.display.normal:getWidth(screenTitle) / 2,
         50
       )
 
@@ -30,8 +30,8 @@ local function settingsScreen()
       ):draw()
 
       local backButton = buttons.back
-      backButton.x = window_width - padding[1] - backButton.width
-      backButton.y = window_height - padding[2] - backButton.height
+      backButton.x = windowWidth - padding[1] - backButton.width
+      backButton.y = windowHeight - padding[2] - backButton.height
       backButton:draw()
     end
   }

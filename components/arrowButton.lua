@@ -85,9 +85,9 @@ local function arrowButton(
         }
       end
       love.graphics.setColor(
-        menuButtonStyle.states[self.state].text_color[1],
-        menuButtonStyle.states[self.state].text_color[2],
-        menuButtonStyle.states[self.state].text_color[3]
+        menuButtonStyle.states[self.state].textColor[1],
+        menuButtonStyle.states[self.state].textColor[2],
+        menuButtonStyle.states[self.state].textColor[3]
       )
       love.graphics.polygon(
         "fill",

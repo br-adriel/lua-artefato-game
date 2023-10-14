@@ -1,11 +1,11 @@
-local menuButton = require("components.menu_button")
+local menuButton = require("components.menuButton")
 
 local function backButton(text, x, y)
   local button = menuButton(
     text,
     function()
-      _G.current_screen = _G.previous_screen
-      _G.previous_screen = nil
+      _G.currentScreen = _G.previousScreen
+      _G.previousScreen = nil
     end,
     nil,
     x,

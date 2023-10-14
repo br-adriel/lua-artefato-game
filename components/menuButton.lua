@@ -14,8 +14,8 @@ local function menuButton(
     x = x or 0,
     y = y or 0,
 
-    checkClick = function(self, mouse_x, mouse_y)
-      if self:isHorvering(mouse_x, mouse_y) then
+    checkClick = function(self, mouseX, mouseY)
+      if self:isHorvering(mouseX, mouseY) then
         if onClick then
           if onClickParam then
             onClick(onClickParam)
@@ -27,9 +27,9 @@ local function menuButton(
     end,
 
     draw = function(self)
-      local font        = menuButtonStyle.font
-      local text_width  = font:getWidth(text)
-      local text_height = font:getHeight()
+      local font       = menuButtonStyle.font
+      local textWidth  = font:getWidth(text)
+      local textHeight = font:getHeight()
 
       love.graphics.setColor(
         menuButtonStyle.states[self.state].bg[1],
@@ -41,16 +41,16 @@ local function menuButton(
         menuButtonStyle.states[self.state].mode,
         self.x,
         self.y,
-        text_width + menuButtonStyle.padding[1] * 2,
-        text_height + menuButtonStyle.padding[2] * 2,
+        textWidth + menuButtonStyle.padding[1] * 2,
+        textHeight + menuButtonStyle.padding[2] * 2,
         menuButtonStyle.radius[1],
         menuButtonStyle.radius[2]
       )
 
       love.graphics.setColor(
-        menuButtonStyle.states[self.state].text_color[1],
-        menuButtonStyle.states[self.state].text_color[2],
-        menuButtonStyle.states[self.state].text_color[3]
+        menuButtonStyle.states[self.state].textColor[1],
+        menuButtonStyle.states[self.state].textColor[2],
+        menuButtonStyle.states[self.state].textColor[3]
       )
       love.graphics.setFont(font)
       love.graphics.print(
@@ -63,18 +63,18 @@ local function menuButton(
     height =
         menuButtonStyle.font:getHeight() + menuButtonStyle.padding[2] * 2,
 
-    isHorvering = function(self, mouse_x, mouse_y)
+    isHorvering = function(self, mouseX, mouseY)
       if (
-            mouse_x >= self.x and mouse_x <= self.x + self.width and
-            mouse_y >= self.y and mouse_y <= self.y + self.height
+            mouseX >= self.x and mouseX <= self.x + self.width and
+            mouseY >= self.y and mouseY <= self.y + self.height
           ) then
         return true
       end
       return false
     end,
 
-    update = function(self, mouse_x, mouse_y)
-      if (self:isHorvering(mouse_x, mouse_y)) then
+    update = function(self, mouseX, mouseY)
+      if (self:isHorvering(mouseX, mouseY)) then
         self.state = "hover"
       else
         self.state = "normal"

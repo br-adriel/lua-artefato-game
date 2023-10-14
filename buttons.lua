@@ -1,14 +1,14 @@
-local arrowButton = require("components.arrow_button")
-local backButton = require("components.back_button")
-local menuButton = require("components.menu_button")
+local arrowButton = require("components.arrowButton")
+local backButton = require("components.backButton")
+local menuButton = require("components.menuButton")
 local love = require("love")
 
 return {
   home = {
     exit = menuButton("Sair", love.event.quit),
     settings = menuButton("Configurações", function()
-      _G.previous_screen = "home"
-      _G.current_screen = "settings"
+      _G.previousScreen = "home"
+      _G.currentScreen = "settings"
     end)
   },
   settings = {
