@@ -57,6 +57,7 @@ local function homeScreen()
       local textStartHeight = windowHeight / 2 - totalTextHeight / 2
 
       -- Desenha o fundo estrelado
+      love.graphics.setColor(1, 1, 1)
       for _, star in pairs(stars) do
         star.object.animations.default:draw(
           star.object.sprite,
