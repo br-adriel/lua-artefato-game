@@ -19,9 +19,21 @@ function love.mousepressed(x, y, button, isTouch, presses)
   end
 end
 
+function love.load()
+  for _, screen in pairs(screens) do
+    if screen.load then
+      screen:load()
+    end
+  end
+end
+
 function love.update(dt)
   for _, button in pairs(buttons[currentScreen]) do
     button:update(love.mouse.getPosition())
+  end
+
+  if screens[currentScreen].update then
+    screens[currentScreen]:update(dt)
   end
 end
 
