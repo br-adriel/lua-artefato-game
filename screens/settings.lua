@@ -8,6 +8,12 @@ local function settingsScreen()
   local screenTitle = "confiGuRAções"
 
   return {
+    load = function(self)
+    end,
+
+    update = function(self)
+    end,
+
     draw = function(self)
       local windowWidth = love.graphics.getWidth()
       local windowHeight = love.graphics.getHeight()
