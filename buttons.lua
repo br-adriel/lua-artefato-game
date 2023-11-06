@@ -6,7 +6,7 @@ local love = require("love")
 return {
   home = {
     exit = menuButton("Sair", love.event.quit),
-    settings = menuButton("Configurações", function()
+    settings = menuButton("Config.", function()
       _G.previousScreen = "home"
       _G.currentScreen = "settings"
     end)
