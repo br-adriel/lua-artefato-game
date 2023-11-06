@@ -37,10 +37,18 @@ local function homeScreen()
   local gameTitle = "ARtefAto"
   local gameAuthor = "por Adriel Faria dos Santos"
   local stars = {}
+  local sounds = {}
+  sounds.bgMusic = love.audio.newSource("assets/music/AWalkIntoSpace-TopherMohrAndAlexElena.mp3", "stream")
+  sounds.bgMusic:setLooping(true)
+
 
   return {
     load = function(self)
       stars = generateRandomStars(10)
+
+      if not sounds.bgMusic:isPlaying() then
+        sounds.bgMusic:play()
+      end
     end,
 
     update = function(self, dt)
