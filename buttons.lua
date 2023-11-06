@@ -7,8 +7,9 @@ return {
   home = {
     exit = menuButton("Sair", love.event.quit),
     settings = menuButton("Config.", function()
-      _G.previousScreen = "home"
+      table.insert(_G.previousScreens, _G.currentScreen)
       _G.currentScreen = "settings"
+      _G.screenChanged = true
     end)
   },
   settings = {

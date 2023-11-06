@@ -4,8 +4,8 @@ local function backButton(text, x, y)
   local button = menuButton(
     text,
     function()
-      _G.currentScreen = _G.previousScreen
-      _G.previousScreen = nil
+      _G.currentScreen = table.remove(_G.previousScreens)
+      _G.screenChanged = true
     end,
     nil,
     x,

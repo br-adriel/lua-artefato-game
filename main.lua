@@ -8,8 +8,9 @@ local screens = {
   settings = settingsScreen,
 }
 
-_G.previousScreen = 'home'
+_G.previousScreens = {}
 _G.currentScreen = 'home'
+_G.screenChanged = false
 
 function love.mousepressed(x, y, button, isTouch, presses)
   if button == 1 then
@@ -20,14 +21,20 @@ function love.mousepressed(x, y, button, isTouch, presses)
 end
 
 function love.load()
-  for _, screen in pairs(screens) do
-    if screen.load then
-      screen:load()
-    end
+  if screens[currentScreen].load then
+    screens[currentScreen]:load()
   end
 end
 
 function love.update(dt)
+  if _G.screenChanged then
+    if screens[currentScreen].load then
+      screens[currentScreen]:load()
+    end
+
+    _G.screenChanged = false
+  end
+
   for _, button in pairs(buttons[currentScreen]) do
     button:update(love.mouse.getPosition())
   end
