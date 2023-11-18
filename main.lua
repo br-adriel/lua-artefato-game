@@ -1,16 +1,23 @@
 local love = require("love")
 local homeScreen = require("screens.home")
 local settingsScreen = require("screens.settings")
+local gameScreen = require("screens.game")
 local buttons = require("buttons")
 
 local screens = {
   home = homeScreen,
   settings = settingsScreen,
+  game = gameScreen,
 }
 
 _G.previousScreens = {}
 _G.currentScreen = 'home'
 _G.screenChanged = false
+_G.navigateTo = function(screen)
+  table.insert(_G.previousScreens, _G.currentScreen)
+  _G.currentScreen = screen
+  _G.screenChanged = true
+end
 
 function love.mousepressed(x, y, button, isTouch, presses)
   if button == 1 then
