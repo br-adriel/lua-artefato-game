@@ -5,16 +5,14 @@ local love = require("love")
 
 return {
   home = {
-    exit = menuButton("Sair", love.event.quit),
-    settings = menuButton("Config.", function()
-      table.insert(_G.previousScreens, _G.currentScreen)
-      _G.currentScreen = "settings"
-      _G.screenChanged = true
-    end)
+    _1_exit = menuButton("Sair", love.event.quit),
+    _2_settings = menuButton("Config.", function() _G.navigateTo("settings") end),
+    _3_play = menuButton("Jogar", function() _G.navigateTo("game") end),
   },
   settings = {
     back = backButton("Voltar"),
     increaseScale = arrowButton("right", 16),
     decreaseScale = arrowButton("left", 16),
-  }
+  },
+  game = {}
 }
