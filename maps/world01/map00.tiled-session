@@ -12,10 +12,10 @@
         },
         "w01m00.tmx": {
             "scale": 1,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 316,
-                "y": 235.5
+                "x": 315,
+                "y": 234.5
             }
         },
         "w01m00.tmx#portas_mundo_1": {
