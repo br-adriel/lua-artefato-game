@@ -1,5 +1,3 @@
-local love = require("love")
-
 local beginContact = function(a, b, collision)
   _G.player:beginContact(a, b, collision)
 end
@@ -24,10 +22,10 @@ local function gameScreen()
     draw = function(self)
       _G.currentMap:draw()
 
-      love.graphics.push()
-      love.graphics.scale(_G.currentMap.scale, _G.currentMap.scale)
+      _G.love.graphics.push()
+      _G.love.graphics.scale(_G.currentMap.scale, _G.currentMap.scale)
       _G.player:draw()
-      love.graphics.pop()
+      _G.love.graphics.pop()
     end,
   }
 end

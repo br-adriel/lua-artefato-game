@@ -6,6 +6,8 @@ local buttons = require("buttons")
 local world01 = require("maps.world01")
 local player = require("characters.player")
 
+_G.love = love
+
 -- restreamento de telas
 local screens = {
   home = homeScreen,
@@ -28,7 +30,7 @@ _G.currentMap = world01.map00
 _G.player = player
 
 
-function love.mousepressed(x, y, button, isTouch, presses)
+function _G.love.mousepressed(x, y, button, isTouch, presses)
   if button == 1 then
     for _, btn in pairs(buttons[currentScreen]) do
       btn:checkClick(x, y)
@@ -36,17 +38,17 @@ function love.mousepressed(x, y, button, isTouch, presses)
   end
 end
 
-function love.keypressed(key)
+function _G.love.keypressed(key)
   _G.player:jump(key)
 end
 
-function love.load()
+function _G.love.load()
   if screens[currentScreen].load then
     screens[currentScreen]:load()
   end
 end
 
-function love.update(dt)
+function _G.love.update(dt)
   if _G.screenChanged then
     if screens[currentScreen].load then
       screens[currentScreen]:load()
@@ -56,7 +58,7 @@ function love.update(dt)
   end
 
   for _, button in pairs(buttons[currentScreen]) do
-    button:update(love.mouse.getPosition())
+    button:update(_G.love.mouse.getPosition())
   end
 
   if screens[currentScreen].update then
@@ -64,6 +66,6 @@ function love.update(dt)
   end
 end
 
-function love.draw()
+function _G.love.draw()
   screens[currentScreen]:draw()
 end

@@ -1,5 +1,3 @@
-local love = require("love")
-
 return {
   load = function(self)
     self.x            = 100;
@@ -18,11 +16,11 @@ return {
     self.jumps        = 0
 
     self.physics      = {
-      body = love.physics.newBody(_G.world, self.x, self.y, "dynamic"),
-      shape = love.physics.newRectangleShape(self.width, self.height)
+      body = _G.love.physics.newBody(_G.world, self.x, self.y, "dynamic"),
+      shape = _G.love.physics.newRectangleShape(self.width, self.height)
     }
     self.physics.body:setFixedRotation(true)
-    self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape)
+    self.physics.fixture = _G.love.physics.newFixture(self.physics.body, self.physics.shape)
   end,
 
   syncPhysics = function(self)
@@ -31,7 +29,7 @@ return {
   end,
 
   move = function(self, dt)
-    if love.keyboard.isDown("d", "right") then
+    if _G.love.keyboard.isDown("d", "right") then
       if self.xVel < self.maxSpeed then
         if self.xVel + self.acceleration * dt < self.maxSpeed then
           self.xVel = self.xVel + self.acceleration * dt
@@ -39,7 +37,7 @@ return {
           self.xVel = self.maxSpeed
         end
       end
-    elseif love.keyboard.isDown("a", "left") then
+    elseif _G.love.keyboard.isDown("a", "left") then
       if self.xVel > -self.maxSpeed then
         if self.xVel - self.acceleration * dt > self.maxSpeed then
           self.xVel = self.xVel - self.acceleration * dt
@@ -120,7 +118,7 @@ return {
   end,
 
   draw = function(self)
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.rectangle("fill", self.x - self.width / 2, self.y - self.height / 2, self.width, self.height)
+    _G.love.graphics.setColor(1, 1, 1)
+    _G.love.graphics.rectangle("fill", self.x - self.width / 2, self.y - self.height / 2, self.width, self.height)
   end,
 }

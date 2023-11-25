@@ -1,4 +1,3 @@
-local love = require("love")
 local menuButtonStyle = require("styles").menu.button
 
 local function menuButton(
@@ -31,13 +30,13 @@ local function menuButton(
       local textWidth  = font:getWidth(text)
       local textHeight = font:getHeight()
 
-      love.graphics.setColor(
+      _G.love.graphics.setColor(
         menuButtonStyle.states[self.state].bg[1],
         menuButtonStyle.states[self.state].bg[2],
         menuButtonStyle.states[self.state].bg[3]
       )
 
-      love.graphics.rectangle(
+      _G.love.graphics.rectangle(
         menuButtonStyle.states[self.state].mode,
         self.x,
         self.y,
@@ -47,13 +46,13 @@ local function menuButton(
         menuButtonStyle.radius[2]
       )
 
-      love.graphics.setColor(
+      _G.love.graphics.setColor(
         menuButtonStyle.states[self.state].textColor[1],
         menuButtonStyle.states[self.state].textColor[2],
         menuButtonStyle.states[self.state].textColor[3]
       )
-      love.graphics.setFont(font)
-      love.graphics.print(
+      _G.love.graphics.setFont(font)
+      _G.love.graphics.print(
         text,
         self.x + menuButtonStyle.padding[1],
         self.y + menuButtonStyle.padding[2]

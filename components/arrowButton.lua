@@ -1,4 +1,3 @@
-local love = require("love")
 local menuButtonStyle = require("styles").menu.button
 
 local function arrowButton(
@@ -30,13 +29,13 @@ local function arrowButton(
     end,
 
     draw = function(self)
-      love.graphics.setColor(
+      _G.love.graphics.setColor(
         menuButtonStyle.states[self.state].bg[1],
         menuButtonStyle.states[self.state].bg[2],
         menuButtonStyle.states[self.state].bg[3]
       )
 
-      love.graphics.rectangle(
+      _G.love.graphics.rectangle(
         menuButtonStyle.states[self.state].mode,
         self.x,
         self.y,
@@ -84,12 +83,12 @@ local function arrowButton(
           self.y + menuButtonStyle.padding[2],
         }
       end
-      love.graphics.setColor(
+      _G.love.graphics.setColor(
         menuButtonStyle.states[self.state].textColor[1],
         menuButtonStyle.states[self.state].textColor[2],
         menuButtonStyle.states[self.state].textColor[3]
       )
-      love.graphics.polygon(
+      _G.love.graphics.polygon(
         "fill",
         vertices
       )

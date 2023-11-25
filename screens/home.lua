@@ -1,4 +1,3 @@
-local love = require("love")
 local fonts = require("fonts")
 local buttons = require("buttons")
 local Star = require("sprites.star")
@@ -38,7 +37,7 @@ local function homeScreen()
   local gameAuthor = "por Adriel Faria dos Santos"
   local stars = {}
   local sounds = {}
-  sounds.bgMusic = love.audio.newSource("assets/music/AWalkIntoSpace-TopherMohrAndAlexElena.mp3", "stream")
+  sounds.bgMusic = _G.love.audio.newSource("assets/music/AWalkIntoSpace-TopherMohrAndAlexElena.mp3", "stream")
   sounds.bgMusic:setLooping(true)
 
 
@@ -58,14 +57,14 @@ local function homeScreen()
     end,
 
     draw = function(self)
-      local windowWidth = love.graphics.getWidth()
-      local windowHeight = love.graphics.getHeight()
+      local windowWidth = _G.love.graphics.getWidth()
+      local windowHeight = _G.love.graphics.getHeight()
 
       local totalTextHeight = fonts.display.large:getHeight() + fonts.commonText.normal:getHeight() + textDistance
       local textStartHeight = windowHeight / 2 - totalTextHeight / 2
 
       -- Desenha o fundo estrelado
-      love.graphics.setColor(1, 1, 1)
+      _G.love.graphics.setColor(1, 1, 1)
       for _, star in pairs(stars) do
         star.object.animations.default:draw(
           star.object.sprite,
@@ -78,16 +77,16 @@ local function homeScreen()
       end
 
       -- desenha o título do jogo
-      love.graphics.setColor(1, 1, 1)
-      love.graphics.setFont(fonts.display.large)
-      love.graphics.print(
+      _G.love.graphics.setColor(1, 1, 1)
+      _G.love.graphics.setFont(fonts.display.large)
+      _G.love.graphics.print(
         gameTitle,
         windowWidth / 2 - fonts.display.large:getWidth(gameTitle) / 2,
         textStartHeight
       )
 
-      love.graphics.setFont(fonts.commonText.normal)
-      love.graphics.print(
+      _G.love.graphics.setFont(fonts.commonText.normal)
+      _G.love.graphics.print(
         gameAuthor,
         windowWidth / 2 - fonts.commonText.normal:getWidth(gameAuthor) / 2,
         textStartHeight + textDistance + fonts.display.large:getHeight()

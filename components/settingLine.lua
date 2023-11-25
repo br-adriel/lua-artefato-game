@@ -1,4 +1,3 @@
-local love = require("love")
 local styles = require("styles")
 local arrowButton = require("components.arrowButton")
 
@@ -12,12 +11,12 @@ local function settingLine(settingName, x, y, value, leftButton, rightButton)
     value = value or "",
 
     draw = function(self)
-      local windowWidth = love.graphics.getWidth()
+      local windowWidth = _G.love.graphics.getWidth()
       local textY = y + style.padding[2] + (rightBtn:height() - style.font:getHeight()) / 2
 
-      love.graphics.setColor(1, 1, 1)
-      love.graphics.setFont(style.font)
-      love.graphics.print(
+      _G.love.graphics.setColor(1, 1, 1)
+      _G.love.graphics.setFont(style.font)
+      _G.love.graphics.print(
         name,
         x + style.padding[1],
         textY
@@ -31,9 +30,9 @@ local function settingLine(settingName, x, y, value, leftButton, rightButton)
       leftBtn.y = y + style.padding[2]
       leftBtn:draw()
 
-      love.graphics.setColor(1, 1, 1)
-      love.graphics.setFont(style.font)
-      love.graphics.print(
+      _G.love.graphics.setColor(1, 1, 1)
+      _G.love.graphics.setFont(style.font)
+      _G.love.graphics.print(
         self.value,
         leftBtn.x + leftBtn:width() + style.gap,
         textY

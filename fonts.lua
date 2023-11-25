@@ -1,11 +1,9 @@
-local love = require("love")
-
 local function display(size)
-  return love.graphics.newFont("assets/fonts/MajorMonoDisplay-Regular.ttf", size or 20)
+  return _G.love.graphics.newFont("assets/fonts/MajorMonoDisplay-Regular.ttf", size or 20)
 end
 
 local function commonText(size)
-  return love.graphics.newFont("assets/fonts/Urbanist-VariableFont_wght.ttf", size or 20)
+  return _G.love.graphics.newFont("assets/fonts/Urbanist-VariableFont_wght.ttf", size or 20)
 end
 
 return {

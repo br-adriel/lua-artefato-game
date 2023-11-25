@@ -1,4 +1,3 @@
-local love = require("love")
 local fonts = require("fonts")
 local buttons = require("buttons").settings
 local settingLine = require("components.settingLine")
@@ -15,13 +14,13 @@ local function settingsScreen()
     end,
 
     draw = function(self)
-      local windowWidth = love.graphics.getWidth()
-      local windowHeight = love.graphics.getHeight()
+      local windowWidth = _G.love.graphics.getWidth()
+      local windowHeight = _G.love.graphics.getHeight()
       local heightUnit = windowHeight / 500
 
-      love.graphics.setColor(1, 1, 1)
-      love.graphics.setFont(fonts.display.normal)
-      love.graphics.print(
+      _G.love.graphics.setColor(1, 1, 1)
+      _G.love.graphics.setFont(fonts.display.normal)
+      _G.love.graphics.print(
         screenTitle,
         windowWidth / 2 - fonts.display.normal:getWidth(screenTitle) / 2,
         30 * heightUnit
