@@ -100,6 +100,13 @@ return {
     self.currentGroundCollision = collision
     self.yVel = 0
     self.grounded = true
+    if self.jumps == 3 then
+      _G.love.audio.play(_G.currentMap.sounds.player.landing.large)
+    elseif self.jumps == 2 then
+      _G.love.audio.play(_G.currentMap.sounds.player.landing.medium)
+    else
+      _G.love.audio.play(_G.currentMap.sounds.player.landing.small)
+    end
     self.jumps = 0
   end,
 
