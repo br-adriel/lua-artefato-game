@@ -1,9 +1,12 @@
+local PlayerSprite = require("sprites.characters.player")
+
 return {
   load = function(self)
-    self.x            = 100;
+    self.x            = 100
     self.y            = 0
-    self.width        = 20;
-    self.height       = 60;
+    self.spriteScale  = 3
+    self.width        = 20 * self.spriteScale
+    self.height       = 32 * self.spriteScale
     self.xVel         = 0
     self.yVel         = 0
     self.maxSpeed     = 200
@@ -14,6 +17,9 @@ return {
     self.jumpAmount   = -500
     self.maxJumps     = 3
     self.jumps        = 0
+    self.sprite       = PlayerSprite()
+    self.state        = "idle"
+    self.direction    = "right"
 
     self.physics      = {
       body = _G.love.physics.newBody(_G.world, self.x, self.y, "dynamic"),
@@ -37,6 +43,7 @@ return {
           self.xVel = self.maxSpeed
         end
       end
+      self.direction = "right"
     elseif _G.love.keyboard.isDown("a", "left") then
       if self.xVel > -self.maxSpeed then
         if self.xVel - self.acceleration * dt > self.maxSpeed then
@@ -45,6 +52,7 @@ return {
           self.xVel = -self.maxSpeed
         end
       end
+      self.direction = "left"
     else
       self:applyFriction(dt)
     end
@@ -112,9 +120,8 @@ return {
 
   jump = function(self, key)
     if (key == "w" or key == "up") and (self.grounded or self.jumps < self.maxJumps) then
-      self.yVel = self.jumpAmount
-      self.grounded = false
       self.jumps = self.jumps + 1
+      self.yVel = self.jumpAmount * (1.1 - self.jumps * 0.1)
     end
   end,
 
@@ -122,10 +129,18 @@ return {
     self:syncPhysics()
     self:move(dt)
     self:applyGravity(dt)
+    self.sprite.animations[self.state][self.direction]:update(dt)
   end,
 
   draw = function(self)
     _G.love.graphics.setColor(1, 1, 1)
-    _G.love.graphics.rectangle("fill", self.x - self.width / 2, self.y - self.height / 2, self.width, self.height)
+    self.sprite.animations[self.state][self.direction]:draw(
+      self.sprite.sprite,
+      self.x - self.width / 2,
+      self.y - self.height / 2,
+      nil,
+      self.spriteScale,
+      self.spriteScale
+    )
   end,
 }
