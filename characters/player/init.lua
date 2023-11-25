@@ -95,7 +95,6 @@ return {
     end
   end,
 
-
   endContact = function(self, a, b, collision)
     if a == self.physics.fixture or b == self.physics.fixture then
       if self.currentGroundCollision == collision then
@@ -108,6 +107,7 @@ return {
     self.currentGroundCollision = collision
     self.yVel = 0
     self.grounded = true
+    self.state = "idle"
     if self.jumps == 3 then
       _G.love.audio.play(_G.currentMap.sounds.player.landing.large)
     elseif self.jumps == 2 then
@@ -122,6 +122,7 @@ return {
     if (key == "w" or key == "up") and (self.grounded or self.jumps < self.maxJumps) then
       self.jumps = self.jumps + 1
       self.yVel = self.jumpAmount * (1.1 - self.jumps * 0.1)
+      self.state = "jump"
     end
   end,
 
@@ -135,7 +136,7 @@ return {
   draw = function(self)
     _G.love.graphics.setColor(1, 1, 1)
     self.sprite.animations[self.state][self.direction]:draw(
-      self.sprite.sprite,
+      self.sprite.sprite[self.state],
       self.x - self.width / 2,
       self.y - self.height / 2,
       nil,
