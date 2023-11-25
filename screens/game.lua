@@ -2,13 +2,23 @@ local world01 = require("maps.world01")
 local player = require("characters.player")
 local love = require("love")
 
+local beginContact = function(a, b, collision)
+  player:beginContact(a, b, collision)
+end
+
+local endContact = function(a, b, collision)
+  player:endContact(a, b, collision)
+end
+
 _G.world = world01.world
+_G.player = player
 
 local function gameScreen()
   return {
     load = function(self)
       world01.map00:load()
-      player:load()
+      _G.player:load()
+      _G.world:setCallbacks(beginContact, endContact)
     end,
 
     update = function(self, dt)

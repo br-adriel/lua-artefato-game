@@ -27,6 +27,10 @@ function love.mousepressed(x, y, button, isTouch, presses)
   end
 end
 
+function love.keypressed(key)
+  _G.player:jump(key)
+end
+
 function love.load()
   if screens[currentScreen].load then
     screens[currentScreen]:load()
