@@ -43,6 +43,7 @@ function _G.love.keypressed(key)
 end
 
 function _G.love.load()
+  _G.love.graphics.setDefaultFilter("nearest", "nearest")
   if screens[currentScreen].load then
     screens[currentScreen]:load()
   end
