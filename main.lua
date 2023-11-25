@@ -3,7 +3,10 @@ local homeScreen = require("screens.home")
 local settingsScreen = require("screens.settings")
 local gameScreen = require("screens.game")
 local buttons = require("buttons")
+local world01 = require("maps.world01")
+local player = require("characters.player")
 
+-- restreamento de telas
 local screens = {
   home = homeScreen,
   settings = settingsScreen,
@@ -18,6 +21,12 @@ _G.navigateTo = function(screen)
   _G.currentScreen = screen
   _G.screenChanged = true
 end
+
+-- reastreamento de nivel/mapa
+_G.world = world01.world
+_G.currentMap = world01.map00
+_G.player = player
+
 
 function love.mousepressed(x, y, button, isTouch, presses)
   if button == 1 then
