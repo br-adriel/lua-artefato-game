@@ -35,26 +35,41 @@ return {
   end,
 
   move = function(self, dt)
-    if _G.love.keyboard.isDown("d", "right") then
-      if self.xVel < self.maxSpeed then
-        if self.xVel + self.acceleration * dt < self.maxSpeed then
-          self.xVel = self.xVel + self.acceleration * dt
-        else
-          self.xVel = self.maxSpeed
+    -- verifica se está em movimento
+    if (_G.love.keyboard.isDown("d", "right", "a", "left")) then
+      -- verifica se está indo para a direita
+      if _G.love.keyboard.isDown("d", "right") then
+        if self.xVel < self.maxSpeed then
+          if self.xVel + self.acceleration * dt < self.maxSpeed then
+            self.xVel = self.xVel + self.acceleration * dt
+          else
+            self.xVel = self.maxSpeed
+          end
         end
-      end
-      self.direction = "right"
-    elseif _G.love.keyboard.isDown("a", "left") then
-      if self.xVel > -self.maxSpeed then
-        if self.xVel - self.acceleration * dt > self.maxSpeed then
-          self.xVel = self.xVel - self.acceleration * dt
-        else
-          self.xVel = -self.maxSpeed
+        self.direction = "right"
+      else       -- indo para a esquerda
+        if self.xVel > -self.maxSpeed then
+          if self.xVel - self.acceleration * dt > self.maxSpeed then
+            self.xVel = self.xVel - self.acceleration * dt
+          else
+            self.xVel = -self.maxSpeed
+          end
         end
+        self.direction = "left"
       end
-      self.direction = "left"
-    else
+
+      -- altera esrado para "andando" e toca efeito sonoro de passos
+      if self.state == "idle" then
+        self.state = "walk"
+        _G.currentMap.sounds.player.walking.default:setLooping(true)
+        _G.love.audio.play(_G.currentMap.sounds.player.walking.default)
+      end
+    else -- nao está se movendo
       self:applyFriction(dt)
+      if self.state == "walk" then
+        self.state = "idle"
+      end
+      _G.currentMap.sounds.player.walking.default:stop()
     end
   end,
 
