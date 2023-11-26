@@ -5,8 +5,11 @@ local gameScreen = require("screens.game")
 local buttons = require("buttons")
 local world01 = require("maps.world01")
 local player = require("characters.player")
+local camera = require("lib.hump.camera")
 
 _G.love = love
+
+_G.camera = camera()
 
 -- restreamento de telas
 local screens = {
