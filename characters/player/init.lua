@@ -47,7 +47,7 @@ return {
           end
         end
         self.direction = "right"
-      else       -- indo para a esquerda
+      else -- indo para a esquerda
         if self.xVel > -self.maxSpeed then
           if self.xVel - self.acceleration * dt > self.maxSpeed then
             self.xVel = self.xVel - self.acceleration * dt
