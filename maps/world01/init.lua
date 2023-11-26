@@ -1,7 +1,8 @@
 local sti = require("lib/sti")
 local maps = require("maps")
 local world = _G.love.physics.newWorld(0, 0)
-local woodSounds = require("assets.sounds.landing.wood")
+local woodLandingSounds = require("assets.sounds.landing.wood")
+local walkingSounds = require("assets.sounds.walking")
 
 return {
   world = world,
@@ -11,9 +12,12 @@ return {
     sounds = {
       player = {
         landing = {
-          small = _G.love.audio.newSource(woodSounds.small.source, woodSounds.small.type),
-          medium = _G.love.audio.newSource(woodSounds.medium.source, woodSounds.medium.type),
-          large = _G.love.audio.newSource(woodSounds.large.source, woodSounds.large.type),
+          small = _G.love.audio.newSource(woodLandingSounds.small.source, woodLandingSounds.small.type),
+          medium = _G.love.audio.newSource(woodLandingSounds.medium.source, woodLandingSounds.medium.type),
+          large = _G.love.audio.newSource(woodLandingSounds.large.source, woodLandingSounds.large.type),
+        },
+        walking = {
+          default = _G.love.audio.newSource(walkingSounds.wood.source, walkingSounds.wood.type)
         }
       }
     },
