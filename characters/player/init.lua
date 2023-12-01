@@ -1,25 +1,25 @@
 local PlayerSprite = require("sprites.characters.player")
 
 return {
-  load = function(self)
-    self.x            = 100
-    self.y            = 0
+  load = function(self, initialState)
+    self.x            = initialState.x or 100
+    self.y            = initialState.y or 0
     self.spriteScale  = 3
     self.width        = 20 * self.spriteScale
     self.height       = 32 * self.spriteScale
-    self.xVel         = 0
-    self.yVel         = 0
-    self.maxSpeed     = 200
-    self.acceleration = 4000
-    self.friction     = 3500
-    self.gravity      = 1500
-    self.grounded     = false
-    self.jumpAmount   = -500
-    self.maxJumps     = 3
-    self.jumps        = 0
+    self.xVel         = initialState.xVel or 0
+    self.yVel         = initialState.yVel or 0
+    self.maxSpeed     = initialState.maxSped or 200
+    self.acceleration = initialState.acceleration or 4000
+    self.friction     = initialState.friction or 3500
+    self.gravity      = initialState.gravity or 1500
+    self.grounded     = initialState.grounded or false
+    self.jumpAmount   = initialState.jumpAmount or -500
+    self.maxJumps     = initialState.maxJumps or 3
+    self.jumps        = initialState.jumps or 0
     self.sprite       = PlayerSprite()
-    self.state        = "idle"
-    self.direction    = "right"
+    self.state        = initialState.state or "idle"
+    self.direction    = initialState.direction or "right"
 
     self.physics      = {
       body = _G.love.physics.newBody(_G.world, self.x, self.y, "dynamic"),
