@@ -10,7 +10,7 @@ local function gameScreen()
   return {
     load = function(self)
       _G.currentMap:load()
-      _G.player:load()
+      _G.player:load(_G.currentMap.initialPlayerState)
       _G.world:setCallbacks(beginContact, endContact)
     end,
 

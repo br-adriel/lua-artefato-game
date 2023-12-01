@@ -5,6 +5,10 @@ local walkingSounds = require("assets.sounds.walking")
 return function(world)
   return {
     map = sti(require("maps.world01.map00.map00"), { "box2d" }),
+    initialPlayerState = {
+      x = 236,
+      y = 239,
+    },
     scale = 1,
     sounds = {
       player = {
@@ -24,7 +28,7 @@ return function(world)
       self.scale = _G.love.graphics.getHeight() / (self.map.height * self.map.tileheight)
       _G.love.audio.stop()
       self.map:box2d_init(_G.world)
-      self.map.layers.solid.visible = false
+      self.map.layers.colisoes.visible = false
     end,
 
     update = function(self, dt)
@@ -35,8 +39,8 @@ return function(world)
 
     draw = function(self)
       _G.love.graphics.setColor(1, 1, 1)
-      -- _G.love.graphics.scale(self.scale)
       self.map:drawLayer(self.map.layers.paredes)
+      self.map:drawLayer(self.map.layers.piso)
       self.map:drawLayer(self.map.layers.portas)
     end,
   }
