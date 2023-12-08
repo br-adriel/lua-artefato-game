@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="90" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="6">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="90" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="14">
  <editorsettings>
   <export target="map00.lua" format="lua"/>
  </editorsettings>
@@ -90,6 +90,15 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="7" name="passagens">
+  <object id="7" x="66" y="146" width="108" height="141.333"/>
+  <object id="8" x="402" y="145.667" width="108" height="141.333"/>
+  <object id="9" x="561.667" y="146" width="108" height="141.333"/>
+  <object id="10" x="722.333" y="146.667" width="108" height="141.333"/>
+  <object id="11" x="898" y="146.334" width="108" height="141.333"/>
+  <object id="12" x="1073.67" y="146.334" width="108" height="141.333"/>
+  <object id="13" x="1250.33" y="146" width="108" height="141.333"/>
+ </objectgroup>
  <objectgroup id="4" name="colisoes">
   <object id="1" x="0.0277778" y="287.969" width="1439.92" height="80.0616">
    <properties>
