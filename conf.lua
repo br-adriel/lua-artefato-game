@@ -1,7 +1,7 @@
 local love = require("love")
 
 function love.conf(t)
-  t.version = "11.4"                    -- The LÖVE version this game was made for (string)
+  t.version = "11.5"                    -- The LÖVE version this game was made for (string)
 
   t.window.title = "Artefato"           -- The window title (string)
   t.window.icon = "assets/img/icon.png" -- Filepath to an image to use as the window's icon (string)
@@ -13,4 +13,5 @@ function love.conf(t)
   t.window.minheight = 375              -- Minimum window height if the window is resizable (number)
   t.window.fullscreen = true            -- Enable fullscreen (boolean)
   t.window.fullscreentype = "desktop"   -- Choose between "desktop" fullscreen or "exclusive" fullscreen mode (string)
+  t.window.highdpi = true
 end
