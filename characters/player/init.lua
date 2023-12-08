@@ -7,6 +7,8 @@ return {
     self.spriteScale  = 3
     self.width        = 20 * self.spriteScale
     self.height       = 32 * self.spriteScale
+    self.drawX        = self.x - self.width / 2
+    self.drawY        = self.y - self.height / 2
     self.xVel         = initialState.xVel or 0
     self.yVel         = initialState.yVel or 0
     self.maxSpeed     = initialState.maxSped or 200
@@ -20,6 +22,7 @@ return {
     self.sprite       = PlayerSprite()
     self.state        = initialState.state or "idle"
     self.direction    = initialState.direction or "right"
+    self.mana         = 100
 
     self.physics      = {
       body = _G.love.physics.newBody(_G.world, self.x, self.y, "dynamic"),
@@ -31,6 +34,8 @@ return {
 
   syncPhysics = function(self)
     self.x, self.y = self.physics.body:getPosition()
+    self.drawX = self.x - self.width / 2
+    self.drawY = self.y - self.height / 2
     self.physics.body:setLinearVelocity(self.xVel, self.yVel)
   end,
 
@@ -152,8 +157,8 @@ return {
     _G.love.graphics.setColor(1, 1, 1)
     self.sprite.animations[self.state][self.direction]:draw(
       self.sprite.sprite[self.state],
-      self.x - self.width / 2,
-      self.y - self.height / 2,
+      self.drawX,
+      self.drawY,
       nil,
       self.spriteScale,
       self.spriteScale
