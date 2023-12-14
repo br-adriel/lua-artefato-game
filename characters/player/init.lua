@@ -32,6 +32,23 @@ return {
     self.physics.fixture = _G.love.physics.newFixture(self.physics.body, self.physics.shape)
   end,
 
+  applyInitialState = function(self, initialState)
+    self.x            = initialState.x or 100
+    self.y            = initialState.y or 0
+    self.xVel         = initialState.xVel or 0
+    self.yVel         = initialState.yVel or 0
+    self.maxSpeed     = initialState.maxSped or 200
+    self.acceleration = initialState.acceleration or 4000
+    self.friction     = initialState.friction or 3500
+    self.gravity      = initialState.gravity or 1500
+    self.grounded     = initialState.grounded or false
+    self.jumpAmount   = initialState.jumpAmount or -500
+    self.maxJumps     = initialState.maxJumps or 3
+    self.jumps        = initialState.jumps or 0
+    self.state        = initialState.state or "idle"
+    self.direction    = initialState.direction or "right"
+  end,
+
   syncPhysics = function(self)
     self.x, self.y = self.physics.body:getPosition()
     self.drawX = self.x - self.width / 2
