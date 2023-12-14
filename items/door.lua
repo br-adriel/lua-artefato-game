@@ -7,9 +7,10 @@ local Door = {
 
 function Door:init(x, y, width, height, nextMap)
   self.item = self.item:init(x, y, width, height)
-  self.onCollision = function()
+  self.item.onCollision = function()
     if (_G.love.keyboard.isDown('space')) then
       _G.currentMap = nextMap
+      _G.currentMap:load()
     end
   end
   return self
