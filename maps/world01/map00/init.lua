@@ -7,8 +7,8 @@ return function(world)
   return {
     map = sti(require("maps.world01.map00.map00"), { "box2d" }),
     initialPlayerState = {
-      x = 236,
-      y = 239,
+      x = 34,
+      y = 738,
     },
     scale = 1,
     doors = {},
@@ -27,24 +27,29 @@ return function(world)
 
     load = function(self)
       _G.world = world
-      self.scale = _G.love.graphics.getHeight() / (self.map.height * self.map.tileheight)
+      self.scale = _G.love.graphics.getHeight() / (23 * self.map.tileheight)
       _G.love.audio.stop()
       self.map:box2d_init(_G.world)
       self.map.layers.colisoes.visible = false
 
-      for _, passagem in pairs(self.map.layers.passagens.objects) do
-        local door = Door:init(passagem.x, passagem.y, passagem.width, passagem.height,
-          require("maps.world01").map01)
-        table.insert(self.doors, door)
+
+      for _, passagem in ipairs(self.map.layers.passagens.objects) do
+        table.insert(self.doors, Door:init(
+          passagem.x,
+          passagem.y,
+          passagem.width,
+          passagem.height,
+          { 236, 239 }
+        ))
       end
     end,
 
     update = function(self, dt)
-      self.scale = _G.love.graphics.getHeight() / (self.map.height * self.map.tileheight)
+      self.scale = _G.love.graphics.getHeight() / (23 * self.map.tileheight)
       _G.camera:zoomTo(self.scale)
       world:update(dt)
 
-      for _, door in pairs(self.doors) do
+      for _, door in ipairs(self.doors) do
         door:update(dt)
       end
     end,
@@ -55,7 +60,7 @@ return function(world)
       self.map:drawLayer(self.map.layers.piso)
       self.map:drawLayer(self.map.layers.portas)
 
-      for _, door in pairs(self.doors) do
+      for _, door in ipairs(self.doors) do
         door:draw()
       end
     end,
