@@ -33,6 +33,8 @@ return {
   end,
 
   applyInitialState = function(self, initialState)
+    self.physics.body:setPosition(initialState.x or 100, initialState.y or 0)
+
     self.x            = initialState.x or 100
     self.y            = initialState.y or 0
     self.xVel         = initialState.xVel or 0
