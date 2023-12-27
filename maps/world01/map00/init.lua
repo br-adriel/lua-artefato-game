@@ -7,8 +7,7 @@ return function(world)
   return {
     map = sti(require("maps.world01.map00.map00"), { "box2d" }),
     initialPlayerState = {
-      x = 34,
-      y = 738,
+      x = 236, y = 239
     },
     scale = 1,
     doors = {},
@@ -32,16 +31,21 @@ return function(world)
       self.map:box2d_init(_G.world)
       self.map.layers.colisoes.visible = false
 
+      table.insert(self.doors, Door(
+        self.map.layers.passagens.objects[7].x,
+        self.map.layers.passagens.objects[7].y,
+        self.map.layers.passagens.objects[7].width,
+        self.map.layers.passagens.objects[7].height,
+        { 190, 831 }
+      ))
 
-      for _, passagem in ipairs(self.map.layers.passagens.objects) do
-        table.insert(self.doors, Door:init(
-          passagem.x,
-          passagem.y,
-          passagem.width,
-          passagem.height,
-          { 236, 239 }
-        ))
-      end
+      table.insert(self.doors, Door(
+        self.map.layers.passagens.objects[8].x,
+        self.map.layers.passagens.objects[8].y,
+        self.map.layers.passagens.objects[8].width,
+        self.map.layers.passagens.objects[8].height,
+        { 236, 239 }
+      ))
     end,
 
     update = function(self, dt)

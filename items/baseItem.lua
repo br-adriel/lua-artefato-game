@@ -1,40 +1,33 @@
-local BaseItem = {
-  x = 0,
-  y = 0,
-  width = 0,
-  height = 0,
-  active = true,
-  colliding = false,
-  onCollision = function() end
-}
+local BaseItem = function(x, y, width, height, onCollision)
+  return {
+    x = x or 0,
+    y = y or 0,
+    width = width or 0,
+    height = height or 0,
+    active = true,
+    colliding = false,
+    onCollision = onCollision or function() end,
 
-function BaseItem:init(x, y, width, height)
-  self.x = x or 0
-  self.y = y or 0
-  self.width = width or 0
-  self.height = height or 0
+    checkCollision = function(self, x, y, w, h)
+      self.colliding = (
+        x >= self.x and x <= self.x + self.width and
+        y >= self.y and y <= self.y + self.height
+      ) or (
+        x + w >= self.x and x + w <= self.x + self.width and
+        y + h >= self.y and y + h <= self.y + self.height
+      ) or (
+        x >= self.x and x <= self.x + self.width and
+        y + h >= self.y and y + h <= self.y + self.height
+      ) or (
+        x + w >= self.x and x + w <= self.x + self.width and
+        y >= self.y and y <= self.y + self.height
+      )
 
-  return self
-end
-
-function BaseItem:checkCollision(x, y, w, h)
-  self.colliding = (
-    x >= self.x and x <= self.x + self.width and
-    y >= self.y and y <= self.y + self.height
-  ) or (
-    x + w >= self.x and x + w <= self.x + self.width and
-    y + h >= self.y and y + h <= self.y + self.height
-  ) or (
-    x >= self.x and x <= self.x + self.width and
-    y + h >= self.y and y + h <= self.y + self.height
-  ) or (
-    x + w >= self.x and x + w <= self.x + self.width and
-    y >= self.y and y <= self.y + self.height
-  )
-
-  if self.colliding then
-    self:onCollision()
-  end
+      if self.colliding then
+        self:onCollision()
+      end
+    end
+  }
 end
 
 return BaseItem
